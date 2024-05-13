@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/new_background"
+    android:gravity="center_horizontal|center_vertical"
+    android:onClick="mandarCadastro"
+    android:orientation="vertical"
+    android:paddingLeft="32dp"
+    android:paddingRight="32dp"
+    tools:context=".activity.CadastroActivity"
+    tools:ignore="ExtraText,OnClick">
+
+    <TextView
+        android:id="@+id/txtNome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-black"
+        android:text="Login"
+        android:textColor="#FFFFFF"
+        android:textSize="40sp" />
+
+
+    <EditText
+        android:id="@+id/editTextEmailLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/background_texto"
+        android:drawableLeft="@drawable/baseline_email_24"
+        android:ems="10"
+        android:hint=" E-mail"
+        android:inputType="text"
+        android:minHeight="48dp"
+        android:padding="10dp"
+        android:textColor="#FDFBFB"
+        android:textColorHint="#FDFBFB" />
+
+    <EditText
+        android:id="@+id/editTextSenhaLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:inputType="textPassword"
+        android:background="@drawable/background_texto"
+        android:drawableLeft="@drawable/baseline_lock_24"
+        android:ems="10"
+        android:hint=" Senha"
+        android:minHeight="48dp"
+        android:padding="10dp"
+        android:textColor="#FDFBFB"
+        android:textColorHint="#FDFBFB" />
+
+
+    <Button
+        android:id="@+id/buttonAcessarLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/background_botao"
+        android:onClick="validaCampos"
+        android:text="Acessar"
+        android:textColorHighlight="#FFFFFF"
+        android:textColorLink="#FFFFFF" />
+
+
+    <Button
+        android:id="@+id/buttonCadastrarLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/background_botao"
+        android:text="Cadastre-se"
+        android:textColorHighlight="#FFFFFF"
+        android:textColorLink="#FFFFFF"
+        android:onClick="cadastrarTela" />
+
+
+</LinearLayout>

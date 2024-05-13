@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "770791396642",
+    "project_id": "agenda-80e1a",
+    "storage_bucket": "agenda-80e1a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:770791396642:android:b2d2f08903ba6f2e12817b",
+        "android_client_info": {
+          "package_name": "com.example.angendadeatividades"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDjUQE4S_hMaf2g4wyW3ymT1HzA-4oUMLY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

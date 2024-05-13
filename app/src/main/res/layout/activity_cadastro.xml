@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/new_background"
+    android:gravity="center_horizontal|center_vertical"
+    android:orientation="vertical"
+    android:paddingLeft="32dp"
+    android:paddingRight="32dp"
+    tools:context=".activity.CadastroActivity">
+
+    <TextView
+        android:id="@+id/txtNome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-black"
+        android:text="Registro"
+        android:textColor="#FFFFFF"
+        android:textSize="40sp" />
+
+    <EditText
+        android:id="@+id/editTextNome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/background_texto"
+        android:drawableLeft="@drawable/baseline_person_24"
+        android:ems="10"
+        android:hint=" Nome"
+        android:inputType="text"
+        android:minHeight="48dp"
+        android:padding="10dp"
+        android:textColor="#FDFBFB"
+        android:textColorHint="#FDFBFB" />
+
+    <EditText
+        android:id="@+id/editTextEmailLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/background_texto"
+        android:drawableLeft="@drawable/baseline_email_24"
+        android:ems="10"
+        android:hint=" E-mail"
+        android:inputType="text"
+        android:minHeight="48dp"
+        android:padding="10dp"
+        android:textColor="#FDFBFB"
+        android:textColorHint="#FDFBFB" />
+
+    <EditText
+        android:id="@+id/editTextSenhaLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:inputType="textPassword"
+        android:background="@drawable/background_texto"
+        android:drawableLeft="@drawable/baseline_lock_24"
+        android:ems="10"
+        android:hint=" Senha"
+        android:minHeight="48dp"
+        android:padding="10dp"
+        android:textColor="#FDFBFB"
+        android:textColorHint="#FDFBFB" />
+
+    <EditText
+        android:id="@+id/editTextCsenha"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:inputType="textPassword"
+        android:background="@drawable/background_texto"
+        android:drawableLeft="@drawable/baseline_lock_24"
+        android:ems="10"
+        android:hint=" Confirme sua senha"
+        android:minHeight="48dp"
+        android:padding="10dp"
+        android:textColor="#FDFBFB"
+        android:textColorHint="#FDFBFB" />
+
+    <Button
+        android:id="@+id/buttonCadastrarRegistro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_botao"
+        android:onClick="validaCampos"
+        android:text="Cadastrar"
+        android:textColorHighlight="#FFFFFF"
+        android:textColorLink="#FFFFFF" />
+
+</LinearLayout>

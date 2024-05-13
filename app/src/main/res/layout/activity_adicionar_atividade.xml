@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.AdicionarAtividadeActivity"
+    android:background="@drawable/new_background">
+
+    <!-- activity_adicionar_atividade.xml -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <TextView
+            android:id="@+id/textViewDescricao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Adicionar/editar atividade"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_margin="16dp"/>
+
+        <EditText
+            android:id="@+id/editTextTituloAtividade"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textViewDescricao"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:minHeight="48dp"
+            android:padding="10dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/background_texto"
+            android:layout_marginBottom="16dp"
+            android:hint="Título" />
+
+
+
+        <EditText
+            android:id="@+id/editTextDescricaoAtividade"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/background_texto"
+            android:hint="Descrição"
+            android:minHeight="48dp"
+            android:padding="10dp"
+            android:layout_below="@id/editTextTituloAtividade"
+            android:layout_margin="16dp"/>
+
+        <EditText
+            android:id="@+id/editTextDataAtividade"
+            android:layout_width="match_parent"
+            android:background="@drawable/background_texto"
+            android:layout_height="wrap_content"
+            android:hint="Data (DD/MM/AAAA)"
+            android:minHeight="48dp"
+            android:padding="10dp"
+            android:layout_below="@id/editTextDescricaoAtividade"
+            android:layout_margin="16dp"/>
+
+        <EditText
+            android:id="@+id/editTextHoraAtividade"
+            android:layout_width="match_parent"
+            android:background="@drawable/background_texto"
+            android:layout_height="wrap_content"
+            android:hint="Hora (HH:MM)"
+            android:minHeight="48dp"
+            android:padding="10dp"
+            android:layout_below="@id/editTextDataAtividade"
+            android:layout_margin="16dp"/>
+
+        <EditText
+            android:id="@+id/editTextLocalizacaoAtividade"
+            android:layout_width="match_parent"
+            android:background="@drawable/background_texto"
+            android:layout_height="wrap_content"
+            android:hint="Localização"
+            android:minHeight="48dp"
+            android:padding="10dp"
+            android:layout_below="@id/editTextHoraAtividade"
+            android:layout_margin="16dp"/>
+
+        <EditText
+            android:id="@+id/editTextParticipantesAtividade"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/background_texto"
+            android:hint="Participantes"
+            android:minHeight="48dp"
+            android:padding="10dp"
+            android:layout_below="@id/editTextLocalizacaoAtividade"
+            android:layout_margin="16dp"/>
+
+        <Button
+            android:id="@+id/buttonAdicionarAtividade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Adicionar Atividade"
+            android:layout_below="@id/editTextParticipantesAtividade"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="24dp"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:paddingTop="12dp"
+            android:onClick="adicionar"
+            android:paddingBottom="12dp"/>
+
+
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
