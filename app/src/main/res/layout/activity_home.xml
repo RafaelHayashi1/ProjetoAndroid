@@ -77,7 +77,8 @@
             android:layout_weight="1"
             android:ellipsize="none"
             android:text="Filtrar Atividade"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:onClick="exibirCaixaDeTexto" />
 
         <Button
             android:id="@+id/buttonDeslogarUsuario"
@@ -90,8 +91,21 @@
             android:text="Deslogar Usuario"
             android:textSize="14sp" />
 
-
-
     </LinearLayout>
+
+    <!-- Adicionei um EditText para o filtro -->
+    <EditText
+        android:id="@+id/editTextFiltro"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:hint="Digite o filtro..."
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/buttonRow"
+        tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

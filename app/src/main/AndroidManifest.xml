@@ -16,6 +16,9 @@
         android:theme="@style/Theme.AngendaDeAtividades"
         tools:targetApi="31">
         <activity
+            android:name=".activity.FiltrarActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.utilidades.DetalhesAtividadeActivity"
             android:exported="false" />
         <activity

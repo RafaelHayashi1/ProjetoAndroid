@@ -4,13 +4,17 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.example.angendadeatividades.activity.model.AtividadeHome;
 import com.example.angendadeatividades.R;
 import com.example.angendadeatividades.activity.utilidades.DetalhesAtividadeActivity;
 import com.google.firebase.auth.FirebaseAuth;
@@ -21,9 +25,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+
 public class HomeActivity extends AppCompatActivity {
 
     private FirebaseAuth auth;
+    private EditText editTextFiltro;
     private DatabaseReference referencia = FirebaseDatabase.getInstance().getReference();
 
     @Override
@@ -35,7 +44,7 @@ public class HomeActivity extends AppCompatActivity {
         DatabaseReference minhasAtividades = referencia.child("agenda_atividade");
 
         LinearLayout linearLayout = findViewById(R.id.linearLayout);
-
+        editTextFiltro = findViewById(R.id.editTextFiltro);
         Query atividadesQuery = minhasAtividades.orderByChild("uid_usuario").equalTo(auth.getCurrentUser().getUid());
 
         atividadesQuery.addValueEventListener(new ValueEventListener() {
@@ -43,18 +52,34 @@ public class HomeActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 linearLayout.removeAllViews();
 
+                // Lista original de todas as atividades
+                List<AtividadeHome> atividades = new ArrayList<>();
+
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    String uidAtividade = dataSnapshot.getKey(); // Obter o UID da atividade
+                    // Obter os dados da atividade
+                    String uidAtividade = dataSnapshot.getKey();
                     String tituloAtividade = dataSnapshot.child("titulo_atividade").getValue(String.class);
                     String dataAtividade = dataSnapshot.child("data_atividade").getValue(String.class);
                     String descricaoAtividade = dataSnapshot.child("descricao_atividade").getValue(String.class);
                     String horaAtividade = dataSnapshot.child("hora_atividade").getValue(String.class);
                     String localizacaoAtividade = dataSnapshot.child("localizacao_atividade").getValue(String.class);
                     String participantesAtividade = dataSnapshot.child("participantes_atividade").getValue(String.class);
-                    addCard(linearLayout, uidAtividade, tituloAtividade, dataAtividade, descricaoAtividade, horaAtividade, localizacaoAtividade, participantesAtividade);
+
+                    // Adicionar a atividade à lista original
+                    AtividadeHome atividade = new AtividadeHome(uidAtividade, tituloAtividade, dataAtividade, descricaoAtividade, horaAtividade, localizacaoAtividade, participantesAtividade);
+                    atividades.add(atividade);
+                }
+
+                // Verificar se há filtro aplicado
+                String filtro = editTextFiltro.getText().toString().toLowerCase(Locale.getDefault());
+
+                for (AtividadeHome atividade : atividades) {
+                    // Se não houver filtro ou o título da atividade corresponder ao filtro, adicione o card
+                    if (filtro.isEmpty() || atividade.getTitulo().toLowerCase(Locale.getDefault()).contains(filtro)) {
+                        addCard(linearLayout, atividade.getUid(), atividade.getTitulo(), atividade.getData(), atividade.getDescricao(), atividade.getHora(), atividade.getLocalizacao(), atividade.getParticipantes());
+                    }
                 }
             }
-
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
@@ -148,4 +173,75 @@ public class HomeActivity extends AppCompatActivity {
             Toast.makeText(this, "Erro", Toast.LENGTH_SHORT).show();
         }
     }
+
+    public void exibirCaixaDeTexto(View view) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Filtrar Atividade");
+
+        // Criando um EditText programaticamente
+        final EditText editTextFiltro = new EditText(this);
+        editTextFiltro.setHint("Digite o filtro...");
+        builder.setView(editTextFiltro);
+
+        // Adicionando o botão "Aplicar Filtro"
+        builder.setPositiveButton("Aplicar Filtro", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String filtro = editTextFiltro.getText().toString().toLowerCase(Locale.getDefault());
+
+                // Atualizar a exibição das atividades com base no filtro
+                atualizarAtividades(filtro);
+            }
+        });
+
+        // Adicionando o botão "Cancelar"
+        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+        // Criando e exibindo o diálogo
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    private void atualizarAtividades(String filtro) {
+        LinearLayout linearLayout = findViewById(R.id.linearLayout);
+        linearLayout.removeAllViews();
+
+        Query atividadesQuery = referencia.child("agenda_atividade")
+                .orderByChild("uid_usuario")
+                .equalTo(auth.getCurrentUser().getUid());
+
+        atividadesQuery.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    String uidAtividade = dataSnapshot.getKey();
+                    String tituloAtividade = dataSnapshot.child("titulo_atividade").getValue(String.class);
+                    String dataAtividade = dataSnapshot.child("data_atividade").getValue(String.class);
+                    String descricaoAtividade = dataSnapshot.child("descricao_atividade").getValue(String.class);
+                    String horaAtividade = dataSnapshot.child("hora_atividade").getValue(String.class);
+                    String localizacaoAtividade = dataSnapshot.child("localizacao_atividade").getValue(String.class);
+                    String participantesAtividade = dataSnapshot.child("participantes_atividade").getValue(String.class);
+
+                    // Verificar se o título da atividade corresponde ao filtro
+                    if (tituloAtividade != null && tituloAtividade.toLowerCase(Locale.getDefault()).contains(filtro)) {
+                        // Se corresponder, adicione o card
+                        // Você pode obter os outros detalhes da atividade aqui, se necessário
+                        addCard(linearLayout, uidAtividade, tituloAtividade, dataAtividade, descricaoAtividade, horaAtividade, localizacaoAtividade, participantesAtividade);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(HomeActivity.this, "Erro:" + error, Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+
 }
