@@ -1,6 +1,7 @@
 package com.example.angendadeatividades.activity.utilidades;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -20,15 +21,15 @@ public class DetalhesAtividadeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detalhes_atividade); // Definir o layout da atividade
+        setContentView(R.layout.activity_detalhes_atividade);
 
-        // Obter o UID da atividade da Intent
+
         String uidAtividade = getIntent().getStringExtra("UID_ATIVIDADE");
 
-        // Referência ao nó da atividade no banco de dados Firebase
+
         DatabaseReference atividadeRef = referencia.child("agenda_atividade").child(uidAtividade);
 
-        // Referências às TextViews no layout
+
         TextView tituloTextView = findViewById(R.id.textViewTitulo);
         TextView dataTextView = findViewById(R.id.textViewData);
         TextView descricaoTextView = findViewById(R.id.textViewDescricao);
@@ -36,7 +37,7 @@ public class DetalhesAtividadeActivity extends AppCompatActivity {
         TextView localizacaoTextView = findViewById(R.id.textViewLocalizacao);
         TextView participantesTextView = findViewById(R.id.textViewParticipantes);
 
-        // Adicionar um ValueEventListener para buscar os dados da atividade
+
         atividadeRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -50,7 +51,7 @@ public class DetalhesAtividadeActivity extends AppCompatActivity {
                     String localizacao = snapshot.child("localizacao_atividade").getValue(String.class);
                     String participantes = snapshot.child("participantes_atividade").getValue(String.class);
 
-                    // Preencher as TextViews com os dados da atividade
+
                     tituloTextView.setText(titulo);
                     dataTextView.setText("Data da Atividade: " + data);
                     descricaoTextView.setText("Descrição: " + descricao);
@@ -65,6 +66,9 @@ public class DetalhesAtividadeActivity extends AppCompatActivity {
                 // Handle error
             }
         });
+    }
+    public void voltar(View view) {
+        finish();
     }
 
 }

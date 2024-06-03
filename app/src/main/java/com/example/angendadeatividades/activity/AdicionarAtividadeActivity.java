@@ -27,7 +27,6 @@ public class AdicionarAtividadeActivity extends AppCompatActivity {
     }
 
     public void adicionar(View v) {
-        // Obter os valores dos campos de entrada
         String titulo = campoAtividade.getText().toString().trim();
         String descricao = campoDesc.getText().toString().trim();
         String data = campoData.getText().toString().trim();
@@ -36,15 +35,13 @@ public class AdicionarAtividadeActivity extends AppCompatActivity {
         String participantes = campPart.getText().toString().trim();
         String uidUsuario = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-        // Verificar se todos os campos estão preenchidos
         if (!titulo.isEmpty() && !descricao.isEmpty() && !data.isEmpty() && !hora.isEmpty()
                 && !localizacao.isEmpty() && !participantes.isEmpty()) {
 
             String chave = referencia.child("agenda_atividade").push().getKey();
 
-            // Criar um objeto de atividade com os valores dos campos
             Atividade atividade = new Atividade();
-            atividade.setUid_atividade(chave); // Definir o UID da atividade
+            atividade.setUid_atividade(chave);
             atividade.setUid_usuario(uidUsuario);
             atividade.setTitulo_atividade(titulo);
             atividade.setDescricao_atividade(descricao);
@@ -53,16 +50,13 @@ public class AdicionarAtividadeActivity extends AppCompatActivity {
             atividade.setLocalizacao_atividade(localizacao);
             atividade.setParticipantes_atividade(participantes);
 
-            // Inserir os dados no banco de dados Firebase usando o identificador único gerado
             referencia.child("agenda_atividade").child(chave).setValue(atividade);
 
             // Mostrar uma mensagem de sucesso
             Toast.makeText(this, "Atividade adicionada com sucesso!", Toast.LENGTH_SHORT).show();
 
-            // Limpar os campos de entrada após adicionar a atividade
             limparCampos();
         } else {
-            // Caso algum campo esteja vazio, mostrar uma mensagem de erro
             Toast.makeText(this, "Por favor, preencha todos os campos.", Toast.LENGTH_SHORT).show();
         }
     }
@@ -84,6 +78,10 @@ public class AdicionarAtividadeActivity extends AppCompatActivity {
         campoLoca = findViewById(R.id.editTextLocalizacaoAtividade);
         campPart = findViewById(R.id.editTextParticipantesAtividade);
         adicionarAtividade = findViewById(R.id.buttonAdicionarAtividade);
+    }
+
+    public void voltar(View view) {
+        finish();
     }
 
 }

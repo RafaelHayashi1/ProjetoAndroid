@@ -2,8 +2,8 @@ package com.example.angendadeatividades.activity.model;
 
 
 public class Atividade {
-    private String uid_atividade; // ID único da atividade
-    private String uid_usuario; // UID do usuário
+    private String uid_atividade;
+    private String uid_usuario;
     private String titulo_atividade;
     private String descricao_atividade;
     private String data_atividade;
@@ -13,7 +13,7 @@ public class Atividade {
 
     // Construtor
     public Atividade() {
-        // Construtor vazio necessário para Firebase
+
     }
 
     // Getters e Setters

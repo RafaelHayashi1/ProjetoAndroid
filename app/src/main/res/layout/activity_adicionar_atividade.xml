@@ -93,19 +93,39 @@
             android:layout_below="@id/editTextLocalizacaoAtividade"
             android:layout_margin="16dp"/>
 
-        <Button
-            android:id="@+id/buttonAdicionarAtividade"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Adicionar Atividade"
             android:layout_below="@id/editTextParticipantesAtividade"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="24dp"
-            android:paddingStart="24dp"
-            android:paddingEnd="24dp"
-            android:paddingTop="12dp"
-            android:onClick="adicionar"
-            android:paddingBottom="12dp"/>
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/buttonVoltar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="voltar"
+                android:paddingStart="24dp"
+                android:paddingTop="12dp"
+                android:paddingEnd="24dp"
+                android:paddingBottom="12dp"
+                android:text="Voltar"/>
+
+            <Button
+                android:id="@+id/buttonAdicionarAtividade"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Adicionar Atividade"
+                android:layout_marginStart="16dp"
+                android:onClick="adicionar"
+                android:paddingStart="24dp"
+                android:paddingEnd="24dp"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp"/>
+        </LinearLayout>
+
+
 
 
 
